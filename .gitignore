@@ -1,0 +1,21 @@
+# Ambientes virtuais do Python
+ambiente_virtual/
+env/
+venv/
+.venv/
+projeto_01_interface_programacao_aplicacao/ambiente_virtual/
+
+# Caches e arquivos do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Configurações e variáveis de ambiente
+.env
+.vscode/
+
+# Bancos de dados e exportações
+*.sqlite3
+*.db
+*.pdf

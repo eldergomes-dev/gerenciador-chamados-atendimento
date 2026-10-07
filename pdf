@@ -1,0 +1,81 @@
+# Como Testar no Navegador
+
+Abra o seu navegador (Chrome, Edge ou Firefox) e acesse:
+http://127.0.0.1:8000
+(Deve aparecer o JSON com a mensagem de status ativo)
+
+http://127.0.0.1:8000/
+
+{
+  "mensagem": "API do Gerenciador de Chamados rodando com sucesso!",
+  "status": "Ativo"
+}
+
+----------------------------------------------------------------------------------
+
+
+# Acesse a documentação automática gerada pelo FastAPI:
+http://127.0.0.1:8000/docs
+
+
+http://127.0.0.1:8000/docs
+
+http://127.0.0.1:8000/docs#/
+
+Sistema de Gerenciamento de Chamados e Atendimento
+ 1.0.0 
+OAS 3.1
+/openapi.json
+API corporativa para controle de chamados, suporte técnico e acompanhamento de solicitações.
+
+default
+
+
+GET
+/
+Verificar Status Aplicacao
+
+
+----------------------------------------------------------------------------------
+
+
+# Você acabou de construir do zero uma API em nível profissional seguindo os melhores padrões do mercado.
+
+O segredo para dominar não é memorizar cada linha de código de cabeça, mas sim entender o papel de cada camada no fluxo da informação:
+
+# [ Navegador / Cliente ]
+            │
+            ▼
+   1. ROTAS (rotas/)             --> Recebe a requisição HTTP
+            │
+            ▼
+  2. ESQUEMAS (esquemas/)        --> Valida se os dados enviados estão corretos
+            │
+            ▼
+  3. SERVIÇOS (servicos/)        --> Executa as regras de negócio e segurança
+            │
+            ▼
+   4. MODELOS (modelos/)         --> Mapeia a tabela do banco de dados
+            │
+            ▼
+[ BANCO DE DADOS (SQLite/MySQL) ]
+
+---------------------------------------------------------------------------------
+#Essa é exatamente a postura de um ambiente corporativo real. Em um time de engenharia, o desenvolvimento funciona em ciclos: construímos a funcionalidade, testamos de ponta a ponta, validamos a qualidade e publicamos via versionamento Git.
+
+Para tornar este primeiro projeto um destaque no seu repositório no GitHub, ele precisa estar 100% funcional, documentado e testado.
+
+
+# Passo 1: Testar o Sistema na Prática (Smoke Test)Antes de versionar, precisamos garantir que o fluxo principal funciona sem erros no banco de dados.Com o servidor rodando (uvicorn executavel:aplicacao --reload), abra o Swagger no navegador: http://127.0.0.1:8000/docs.1.1. Cadastrar um Usuário (POST /usuarios/):Criar o usuário solicitante na API.Clique no endpoint POST /usuarios/ e depois em Try it out.Preencha o JSON de envio com seus dados:JSON{
+  "nome_completo": "Elder Gomes",
+  "endereco_email": "elder@email.com",
+  "senha_plana": "SenhaSegura123",
+  "perfil_acesso": "cliente"
+}
+Clique em Execute.O que verificar: A resposta deve ser 201 Created, retornando o usuário com identificador: 1 e a data de criação.2.2. Abrir um Chamado (POST /chamados/):Simular a solicitação de suporte técnico.Clique no endpoint POST /chamados/ e em Try it out.No campo identificador_solicitante, coloque 1.No corpo da requisição (JSON), envie:JSON{
+  "titulo": "Erro ao acessar sistema de relatórios",
+  "descricao": "A tela fica carregando indefinidamente ao tentar exportar em PDF.",
+  "categoria": "Sistemas",
+  "prioridade": "alta"
+}
+Clique em Execute.O que verificar: Resposta 201 Created trazendo o chamado vinculado ao identificador_solicitante: 1.3.3. Listar Chamados (GET /chamados/):Consultar o relatório de chamados no banco.Clique em GET /chamados/ -> Try it out -> Execute.O que verificar: Deve retornar uma lista contendo o chamado criado com o objeto completo do usuário solicitante aninhado.
